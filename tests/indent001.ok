@@ -7,9 +7,9 @@ line
 span)ning
 comment" (hehe). 
 
-    space-indented
-	tab-indented
-	    softtabstop-indented
+    [default text]
+	[default text]
+	    [default text]
 
 Erat volutpat. Donec non tortor. Vivamus posuere nisi mollis dolor. Quisque
 porttitor nisi ac elit. Nullam tincidunt ligula vitae nulla.
