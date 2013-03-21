@@ -3,11 +3,11 @@
 " Tests that the expression is re-evaluated on repetition.
 
 normal! 3G02W
-execute "normal \"=Foo()\<CR>grR"
+execute "normal \"=Foo()\<CR>gri"
 
-9normal .
-8normal .
+11normal .
 10normal .
+12normal .
 
 call VerifyRegisters()
 call vimtest#SaveOut()
