@@ -1,10 +1,10 @@
-" Test repeat replacing a single line with word. 
-" Tests that the same register is used on repetition. 
+" Test repeat indent-replacing a single line with a single line.
+" Tests that the same register is used on repetition.
 
 normal! 3G02W
-normal "agrr
+normal "igri
 
-normal! 2jW
+normal! 8j
 normal .
 
 call VerifyRegisters()
