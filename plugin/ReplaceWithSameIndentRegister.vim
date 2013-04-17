@@ -10,6 +10,11 @@
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
 "
 " REVISION	DATE		REMARKS
+"   1.00.002	22-Mar-2013	Change default mappings from gri / gi to grR /
+"				gR because of ambiguity of e.g. gri" (replace
+"				inner quoted string). R is no motion, so grR is
+"				fine. Likewise, gR in visual mode is not useful
+"				and seems to do the same as v_c.
 "   1.00.001	21-Mar-2013	file creation from ReplaceWithRegister.vim
 
 " Avoid installing twice or when in unsupported Vim version.
@@ -64,10 +69,10 @@ nnoremap <silent> <Plug>ReplaceWithSameIndentRegisterVisual
 
 
 if ! hasmapto('<Plug>ReplaceWithSameIndentRegisterLine', 'n')
-    nmap gri <Plug>ReplaceWithSameIndentRegisterLine
+    nmap grR <Plug>ReplaceWithSameIndentRegisterLine
 endif
 if ! hasmapto('<Plug>ReplaceWithSameIndentRegisterVisual', 'x')
-    xmap gi <Plug>ReplaceWithSameIndentRegisterVisual
+    xmap gR <Plug>ReplaceWithSameIndentRegisterVisual
 endif
 
 let &cpo = s:save_cpo
