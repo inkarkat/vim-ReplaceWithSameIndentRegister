@@ -3,6 +3,7 @@
 " DEPENDENCIES:
 "   - repeat.vim (vimscript #2136) autoload script (optional)
 "   - visualrepeat.vim (vimscript #3848) autoload script (optional)
+"   - visualrepeat/reapply.vim autoload script (optional)
 "
 " Copyright: (C) 2013 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
@@ -10,6 +11,9 @@
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
 "
 " REVISION	DATE		REMARKS
+"   1.00.002	18-Apr-2013	Add ReplaceWithSameIndentRegister#VisualMode()
+"				wrapper around
+"				visualrepeat#reapply#VisualMode().
 "   1.00.001	21-Mar-2013	file creation from ReplaceWithRegister.vim
 
 function! ReplaceWithSameIndentRegister#SetRegister()
@@ -59,6 +63,13 @@ function! ReplaceWithSameIndentRegister#Visual( repeatMapping )
 
     silent! call repeat#set(a:repeatMapping)
     silent! call visualrepeat#set("\<Plug>ReplaceWithSameIndentRegisterVisual")
+endfunction
+
+
+function! ReplaceWithSameIndentRegister#VisualMode()
+    let l:keys = "1v\<Esc>"
+    silent! let l:keys = visualrepeat#reapply#VisualMode(0)
+    return l:keys
 endfunction
 
 " vim: set ts=8 sts=4 sw=4 noexpandtab ff=unix fdm=syntax :
