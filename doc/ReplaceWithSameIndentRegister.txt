@@ -33,7 +33,7 @@ SEE ALSO								     *
 USAGE					 *ReplaceWithSameIndentRegister-usage*
 
 								  *grR* *v_gR*
-["x][count]grR		Replace [count] lines with the contents of register x
+[count]["x]grR		Replace [count] lines with the contents of register x
 			and adjust the indent to the first replaced line (like
 			pasting with |]p|).
 {Visual}["x]gR		Replace the selection with the contents of register x
@@ -88,7 +88,7 @@ First published version.
 Started development.
 
 ==============================================================================
-Copyright: (C) 2013 Ingo Karkat
+Copyright: (C) 2013-2014 Ingo Karkat
 The VIM LICENSE applies to this plugin; see |copyright|.
 
 Maintainer:	Ingo Karkat <ingo@karkat.de>
