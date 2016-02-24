@@ -4,7 +4,7 @@
 runtime plugin/visualrepeat.vim
 
 normal! 3G02W
-normal "igri
+normal "igrR
 
 normal! 10jV2k
 normal .
