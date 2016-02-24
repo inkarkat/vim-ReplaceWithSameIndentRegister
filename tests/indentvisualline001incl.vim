@@ -6,11 +6,11 @@ set ts=8 sts=4 sw=4 noet
 set selection=inclusive
 
 normal! 14G0Vj
-normal "ngi
+normal "ngR
 normal! 5G0V2j
-normal gi
+normal gR
 normal! 3G0V
-normal "igi
+normal "igR
 normal! r*
 
 call VerifyRegisters()
