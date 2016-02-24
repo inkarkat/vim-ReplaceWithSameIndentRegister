@@ -5,7 +5,7 @@
 call vimtest#SkipAndQuitIf(! vimtest#features#SupportsNormalWithCount(), 'Need support for :normal with count')
 
 normal! 4G0V3j
-normal "ngi
+normal "ngR
 
 normal! 6j
 normal .
