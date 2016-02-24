@@ -2,11 +2,11 @@
 " Tests that the cursor is positioned on the first non-blank of the indent-replaced line.
 
 normal! 3G02W
-normal gri
+normal grR
 
-11normal gri
-10normal gri
-12normal gri
+11normal grR
+10normal grR
+12normal grR
 normal! r*
 
 call VerifyRegisters()
