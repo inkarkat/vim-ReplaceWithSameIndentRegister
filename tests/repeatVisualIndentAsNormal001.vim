@@ -4,7 +4,7 @@
 call vimtest#SkipAndQuitIf(! vimtest#features#SupportsNormalWithCount(), 'Need support for :normal with count')
 
 normal! 3G0V
-normal "igi
+normal "igR
 
 normal! 8j
 normal .
