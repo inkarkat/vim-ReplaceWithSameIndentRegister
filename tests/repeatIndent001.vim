@@ -2,7 +2,7 @@
 " Tests that the same register is used on repetition.
 
 normal! 3G02W
-normal "igri
+normal "igrR
 
 normal! 8j
 normal .
