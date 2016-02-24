@@ -3,7 +3,7 @@
 " Tests that the expression is re-evaluated on repetition.
 
 normal! 3G02W
-execute "normal \"=Foo()\<CR>gri"
+execute "normal \"=Foo()\<CR>grR"
 
 11normal .
 10normal .
