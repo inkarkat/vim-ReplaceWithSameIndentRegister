@@ -1,6 +1,8 @@
 [default text]
 Tuple is (foo, bar, baz, hehe, hihi, hoho) for now. 
 1
+This 'one line' is "a (multi line span)ning comment" (hehe). 
+This 'one line' is "a (multi
 line
 span)ning
 comment" (hehe). 
