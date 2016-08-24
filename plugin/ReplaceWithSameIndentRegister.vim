@@ -59,29 +59,20 @@ vnoremap <silent> <Plug>ReplaceWithSameIndentRegisterVisual
 " A normal-mode repeat of the visual mapping is triggered by repeat.vim. It
 " establishes a new selection at the cursor position, of the same mode and size
 " as the last selection.
-" The peculiar thing about this plugin is that it doesn't work on the visual
-" selection; it pastes above and then removes the selected line. That's not an
-" operation, so 1v won't restore that, but the previous visual selection. In
-" effect, an overridden repeat count gets lost. In case of a repeat with an
-" overridden count, switch the repeat mapping from the ...Visual to the ...Line
-" variant, so that future repeats use the new [count] lines instead of the
-" original number of selected lines.
+"   If [count] is given, that number of lines is used / the original size is
+"   multiplied accordingly. This has the side effect that a repeat with [count]
+"   will persist the expanded size, which is different from what the normal-mode
+"   repeat does (it keeps the scope of the original command).
 " First of all, the register must be handled, though.
 nnoremap <silent> <Plug>ReplaceWithSameIndentRegisterVisual
 \ :<C-u>call setline('.', getline('.'))<Bar>
-\execute 'silent! call repeat#setreg("\<lt>Plug>ReplaceWithSameIndentRegister" . (v:count ? "Line" : "Visual"), v:register)'<Bar>
+\execute 'silent! call repeat#setreg("\<lt>Plug>ReplaceWithSameIndentRegisterVisual", v:register)'<Bar>
 \call ReplaceWithSameIndentRegister#SetRegister()<Bar>
 \if ReplaceWithSameIndentRegister#IsExprReg()<Bar>
 \    let g:ReplaceWithSameIndentRegister_expr = getreg('=')<Bar>
 \endif<Bar>
-\if v:count<Bar>
-\   call ReplaceWithSameIndentRegister#SetCount()<Bar>
-\   execute 'normal!' ReplaceWithSameIndentRegister#VisualMode()<Bar>
-\   call ReplaceWithSameIndentRegister#Visual("\<lt>Plug>ReplaceWithSameIndentRegisterLine", 1)<Bar>
-\else<Bar>
-\   execute 'normal!' ReplaceWithSameIndentRegister#VisualMode()<Bar>
-\   call ReplaceWithSameIndentRegister#Visual("\<lt>Plug>ReplaceWithSameIndentRegisterVisual")<Bar>
-\endif<CR>
+\execute 'normal!' ReplaceWithSameIndentRegister#VisualMode()<Bar>
+\call ReplaceWithSameIndentRegister#Visual("\<lt>Plug>ReplaceWithSameIndentRegisterVisual")<CR>
 
 
 if ! hasmapto('<Plug>ReplaceWithSameIndentRegisterLine', 'n')
