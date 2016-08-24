@@ -21,7 +21,9 @@ originated at a different nesting level.
 
 This plugin combines the replacement functionality of the
 |ReplaceWithRegister.vim| plugin with the indent-adjustment done by the
-built-in |]p| command.
+built-in |]p| command. With a simple mapping, you can replace line(s) with the
+contents of a register while adjusting the indent to that of the first
+replaced line.
 
 SEE ALSO								     *
 
@@ -55,6 +57,8 @@ To uninstall, use the |:RmVimball| command.
 DEPENDENCIES			  *ReplaceWithSameIndentRegister-dependencies*
 
 - Requires Vim 7.0 or higher.
+- Requires the |ingo-library.vim| plugin (vimscript #4433), version 1.000 or
+  higher.
 - repeat.vim (vimscript #2136) plugin (optional)
   To support repetition with a register other than the default register, you
   need version 1.1 or later.
@@ -81,7 +85,7 @@ IDEAS					 *ReplaceWithSameIndentRegister-ideas*
 ==============================================================================
 HISTORY				       *ReplaceWithSameIndentRegister-history*
 
-GOAL
+1.00	29-Oct-2014
 First published version.
 
 0.01	21-Mar-2013
