@@ -85,6 +85,12 @@ IDEAS					 *ReplaceWithSameIndentRegister-ideas*
 ==============================================================================
 HISTORY				       *ReplaceWithSameIndentRegister-history*
 
+1.01	RELEASEME
+- BUG: {count}grR does not repeat the count.
+- BUG: Starting with v_gR, repeating in normal mode with {count}., repeating
+  again uses the original number of selected lines, not the overridden
+  {count}.
+
 1.00	29-Oct-2014
 First published version.
 
@@ -92,7 +98,7 @@ First published version.
 Started development.
 
 ==============================================================================
-Copyright: (C) 2013-2014 Ingo Karkat
+Copyright: (C) 2013-2016 Ingo Karkat
 The VIM LICENSE applies to this plugin; see |copyright|.
 
 Maintainer:	Ingo Karkat <ingo@karkat.de>
