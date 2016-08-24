@@ -4,7 +4,7 @@
 "   - Requires Vim 7.0 or higher.
 "   - ReplaceWithSameIndentRegister.vim autoload script
 "
-" Copyright: (C) 2013 Ingo Karkat
+" Copyright: (C) 2013-2016 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 "
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
@@ -42,8 +42,9 @@ nnoremap <silent> <Plug>ReplaceWithSameIndentRegisterLine
 \if ReplaceWithSameIndentRegister#IsExprReg()<Bar>
 \    let g:ReplaceWithSameIndentRegister_expr = getreg('=')<Bar>
 \endif<Bar>
+\call ReplaceWithSameIndentRegister#SetCount()<Bar>
 \execute 'normal! V' . v:count1 . "_\<lt>Esc>"<Bar>
-\call ReplaceWithSameIndentRegister#Visual("\<lt>Plug>ReplaceWithSameIndentRegisterLine")<CR>
+\call ReplaceWithSameIndentRegister#Visual("\<lt>Plug>ReplaceWithSameIndentRegisterLine", 1)<CR>
 
 " Repeat not defined in visual mode, but enabled through visualrepeat.vim.
 vnoremap <silent> <Plug>ReplaceWithSameIndentRegisterVisual
