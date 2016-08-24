@@ -6,7 +6,7 @@
 "   - visualrepeat.vim (vimscript #3848) autoload script (optional)
 "   - visualrepeat/reapply.vim autoload script (optional)
 "
-" Copyright: (C) 2013-2014 Ingo Karkat
+" Copyright: (C) 2013-2016 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 "
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
@@ -20,11 +20,14 @@
 function! ReplaceWithSameIndentRegister#SetRegister()
     let s:register = v:register
 endfunction
+function! ReplaceWithSameIndentRegister#SetCount()
+    let s:count = v:count
+endfunction
 function! ReplaceWithSameIndentRegister#IsExprReg()
     return (s:register ==# '=')
 endfunction
 
-function! ReplaceWithSameIndentRegister#Visual( repeatMapping )
+function! ReplaceWithSameIndentRegister#Visual( repeatMapping, ... )
     if visualmode() !=# 'V'
 	call ingo#msg#ErrorMsg('Indent-replace works only with lines')
 	return
@@ -62,7 +65,11 @@ function! ReplaceWithSameIndentRegister#Visual( repeatMapping )
 	endif
     endtry
 
-    silent! call repeat#set(a:repeatMapping)
+    if a:0 && a:1
+	silent! call repeat#set(a:repeatMapping, s:count)
+    else
+	silent! call repeat#set(a:repeatMapping)
+    endif
     silent! call visualrepeat#set("\<Plug>ReplaceWithSameIndentRegisterVisual")
 endfunction
 
