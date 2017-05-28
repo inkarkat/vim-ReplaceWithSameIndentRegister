@@ -1,4 +1,4 @@
-runtime plugin/ReplaceWithRegister.vim
+runtime plugin/ReplaceWithSameIndentRegister.vim
 
 read input.txt
 1delete _
