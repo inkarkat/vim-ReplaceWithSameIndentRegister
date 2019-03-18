@@ -2,6 +2,9 @@ call vimtest#AddDependency('vim-ingo-library')
 if g:runVimTest =~# 'repeat'
     call vimtest#AddDependency('vim-repeat')
 endif
+if g:runVimTest =~# 'repeat\w*Visual'
+    call vimtest#AddDependency('vim-visualrepeat')
+endif
 
 runtime plugin/ReplaceWithSameIndentRegister.vim
 
