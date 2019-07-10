@@ -2,6 +2,7 @@
 "
 " DEPENDENCIES:
 "   - Requires Vim 7.0 or higher.
+"   - ingo-library.vim plugin
 "
 " Copyright: (C) 2013-2019 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
@@ -29,7 +30,7 @@ nnoremap <silent> <Plug>ReplaceWithSameIndentRegisterLine
 \endif<Bar>
 \call ReplaceWithSameIndentRegister#SetCount()<Bar>
 \execute 'normal! V' . v:count1 . "_\<lt>Esc>"<Bar>
-\call ReplaceWithSameIndentRegister#Visual("\<lt>Plug>ReplaceWithSameIndentRegisterLine", 1)<CR>
+\if ! ReplaceWithSameIndentRegister#Visual("\<lt>Plug>ReplaceWithSameIndentRegisterLine", 1)<Bar>echoerr ingo#err#Get()<Bar>endif<CR>
 
 " Repeat not defined in visual mode, but enabled through visualrepeat.vim.
 vnoremap <silent> <Plug>ReplaceWithSameIndentRegisterVisual
@@ -39,7 +40,7 @@ vnoremap <silent> <Plug>ReplaceWithSameIndentRegisterVisual
 \if ReplaceWithSameIndentRegister#IsExprReg()<Bar>
 \    let g:ReplaceWithSameIndentRegister_expr = getreg('=')<Bar>
 \endif<Bar>
-\call ReplaceWithSameIndentRegister#Visual("\<lt>Plug>ReplaceWithSameIndentRegisterVisual")<CR>
+\if ! ReplaceWithSameIndentRegister#Visual("\<lt>Plug>ReplaceWithSameIndentRegisterVisual")<Bar>echoerr ingo#err#Get()<Bar>endif<CR>
 
 " A normal-mode repeat of the visual mapping is triggered by repeat.vim. It
 " establishes a new selection at the cursor position, of the same mode and size
@@ -57,7 +58,7 @@ nnoremap <silent> <Plug>ReplaceWithSameIndentRegisterVisual
 \    let g:ReplaceWithSameIndentRegister_expr = getreg('=')<Bar>
 \endif<Bar>
 \execute 'normal!' ReplaceWithSameIndentRegister#VisualMode()<Bar>
-\call ReplaceWithSameIndentRegister#Visual("\<lt>Plug>ReplaceWithSameIndentRegisterVisual")<CR>
+\if ! ReplaceWithSameIndentRegister#Visual("\<lt>Plug>ReplaceWithSameIndentRegisterVisual")<Bar>echoerr ingo#err#Get()<Bar>endif<CR>
 
 
 if ! hasmapto('<Plug>ReplaceWithSameIndentRegisterLine', 'n')

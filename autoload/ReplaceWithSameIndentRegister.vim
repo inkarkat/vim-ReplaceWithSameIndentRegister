@@ -22,8 +22,8 @@ endfunction
 
 function! ReplaceWithSameIndentRegister#Visual( repeatMapping, ... )
     if visualmode() !=# 'V'
-	call ingo#msg#ErrorMsg('Indent-replace works only with lines')
-	return
+	call ingo#err#Set('Indent-replace works only with lines')
+	return 0
     endif
 
     " Using ]p on a visual selection indent-pastes the text after the selection;
@@ -71,6 +71,8 @@ function! ReplaceWithSameIndentRegister#Visual( repeatMapping, ... )
 	silent! call repeat#set(a:repeatMapping)
     endif
     silent! call visualrepeat#set("\<Plug>ReplaceWithSameIndentRegisterVisual")
+
+    return 1
 endfunction
 
 
