@@ -33,7 +33,6 @@ SEE ALSO								     *
 
 ==============================================================================
 USAGE					 *ReplaceWithSameIndentRegister-usage*
-
 								  *grR* *v_gR*
 [count]["x]grR		Replace [count] lines with the contents of register x
 			and adjust the indent to the first replaced line (like
