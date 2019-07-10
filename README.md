@@ -87,6 +87,9 @@ HISTORY
 - BUG: Starting with v\_gR, repeating in normal mode with {count}., repeating
   again uses the original number of selected lines, not the overridden
   {count}.
+- Suppress "--No lines in buffer--" message when replacing the entire buffer,
+  and combine "Deleted N lines" / "Added M lines" into a single message that
+  is given when either previous or new amount of lines reaches 'report'.
 
 ##### 1.00    29-Oct-2014
 - First published version.

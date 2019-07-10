@@ -48,10 +48,17 @@ function! ReplaceWithSameIndentRegister#Visual( repeatMapping, ... )
     endif
 
     try
-	execute "normal! g'<\"" . l:actualRegister . '[P'
+	let l:previousLineNum = line("'>") - line("'<") + 1
+	execute "silent normal! g'<\"" . l:actualRegister . '[P'
+	let l:newLineNum = line("']") - line("'[") + 1
 	let l:save_view = winsaveview()
 	    silent normal! gv"_d
 	call winrestview(l:save_view)
+
+	if l:previousLineNum >= &report || l:newLineNum >= &report
+	    echomsg printf('Replaced %d line%s', l:previousLineNum, (l:previousLineNum == 1 ? '' : 's')) .
+	    \   (l:previousLineNum == l:newLineNum ? '' : printf(' with %d line%s', l:newLineNum, (l:newLineNum == 1 ? '' : 's')))
+	endif
     finally
 	if exists('l:save_reg')
 	    call setreg(l:actualRegister, l:save_reg, l:regtype)
