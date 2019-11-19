@@ -82,7 +82,7 @@ https://github.com/inkarkat/vim-ReplaceWithSameIndentRegister/issues or email
 HISTORY
 ------------------------------------------------------------------------------
 
-##### 1.01    RELEASEME
+##### 1.01    19-Nov-2019
 - BUG: {count}grR does not repeat the count.
 - BUG: Starting with v\_gR, repeating in normal mode with {count}., repeating
   again uses the original number of selected lines, not the overridden
