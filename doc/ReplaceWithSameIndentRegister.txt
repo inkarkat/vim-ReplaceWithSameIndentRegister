@@ -33,7 +33,6 @@ SEE ALSO								     *
 
 ==============================================================================
 USAGE					 *ReplaceWithSameIndentRegister-usage*
-
 								  *grR* *v_gR*
 [count]["x]grR		Replace [count] lines with the contents of register x
 			and adjust the indent to the first replaced line (like
@@ -46,10 +45,16 @@ USAGE					 *ReplaceWithSameIndentRegister-usage*
 ==============================================================================
 INSTALLATION			  *ReplaceWithSameIndentRegister-installation*
 
-This script is packaged as a |vimball|. If you have the "gunzip" decompressor
-in your PATH, simply edit the *.vmb.gz package in Vim; otherwise, decompress
-the archive first, e.g. using WinZip. Inside Vim, install by sourcing the
-vimball or via the |:UseVimball| command. >
+The code is hosted in a Git repo at
+    https://github.com/inkarkat/vim-ReplaceWithSameIndentRegister
+You can use your favorite plugin manager, or "git clone" into a directory used
+for Vim |packages|. Releases are on the "stable" branch, the latest unstable
+development snapshot on "master".
+
+This script is also packaged as a |vimball|. If you have the "gunzip"
+decompressor in your PATH, simply edit the *.vmb.gz package in Vim; otherwise,
+decompress the archive first, e.g. using WinZip. Inside Vim, install by
+sourcing the vimball or via the |:UseVimball| command. >
     vim ReplaceWithSameIndentRegister*.vmb.gz
     :so %
 To uninstall, use the |:RmVimball| command.
@@ -82,14 +87,23 @@ TODO					  *ReplaceWithSameIndentRegister-todo*
 
 IDEAS					 *ReplaceWithSameIndentRegister-ideas*
 
+CONTRIBUTING			    *ReplaceWithSameIndentRegister-contribute*
+
+Report any bugs, send patches, or suggest features via the issue tracker at
+https://github.com/inkarkat/vim-ReplaceWithSameIndentRegister/issues or email
+(address below).
+
 ==============================================================================
 HISTORY				       *ReplaceWithSameIndentRegister-history*
 
-1.01	RELEASEME
+1.01	19-Nov-2019
 - BUG: {count}grR does not repeat the count.
 - BUG: Starting with v_gR, repeating in normal mode with {count}., repeating
   again uses the original number of selected lines, not the overridden
   {count}.
+- Suppress "--No lines in buffer--" message when replacing the entire buffer,
+  and combine "Deleted N lines" / "Added M lines" into a single message that
+  is given when either previous or new amount of lines reaches 'report'.
 
 1.00	29-Oct-2014
 First published version.
@@ -98,7 +112,7 @@ First published version.
 Started development.
 
 ==============================================================================
-Copyright: (C) 2013-2016 Ingo Karkat
+Copyright: (C) 2013-2019 Ingo Karkat
 The VIM LICENSE applies to this plugin; see |copyright|.
 
 Maintainer:	Ingo Karkat <ingo@karkat.de>

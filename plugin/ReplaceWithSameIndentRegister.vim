@@ -2,26 +2,12 @@
 "
 " DEPENDENCIES:
 "   - Requires Vim 7.0 or higher.
-"   - ReplaceWithSameIndentRegister.vim autoload script
+"   - ingo-library.vim plugin
 "
-" Copyright: (C) 2013-2016 Ingo Karkat
+" Copyright: (C) 2013-2019 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 "
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
-"
-" REVISION	DATE		REMARKS
-"   1.00.003	18-Apr-2013	Use optional visualrepeat#reapply#VisualMode()
-"				for normal mode repeat of a visual mapping.
-"				When supplying a [count] on such repeat of a
-"				previous linewise selection, now [count] number
-"				of lines instead of [count] times the original
-"				selection is used.
-"   1.00.002	22-Mar-2013	Change default mappings from gri / gi to grR /
-"				gR because of ambiguity of e.g. gri" (replace
-"				inner quoted string). R is no motion, so grR is
-"				fine. Likewise, gR in visual mode is not useful
-"				and seems to do the same as v_c.
-"   1.00.001	21-Mar-2013	file creation from ReplaceWithRegister.vim
 
 " Avoid installing twice or when in unsupported Vim version.
 if exists('g:loaded_ReplaceWithSameIndentRegister') || (v:version < 700)
@@ -44,7 +30,7 @@ nnoremap <silent> <Plug>ReplaceWithSameIndentRegisterLine
 \endif<Bar>
 \call ReplaceWithSameIndentRegister#SetCount()<Bar>
 \execute 'normal! V' . v:count1 . "_\<lt>Esc>"<Bar>
-\call ReplaceWithSameIndentRegister#Visual("\<lt>Plug>ReplaceWithSameIndentRegisterLine", 1)<CR>
+\if ! ReplaceWithSameIndentRegister#Visual("\<lt>Plug>ReplaceWithSameIndentRegisterLine", 1)<Bar>echoerr ingo#err#Get()<Bar>endif<CR>
 
 " Repeat not defined in visual mode, but enabled through visualrepeat.vim.
 vnoremap <silent> <Plug>ReplaceWithSameIndentRegisterVisual
@@ -54,7 +40,7 @@ vnoremap <silent> <Plug>ReplaceWithSameIndentRegisterVisual
 \if ReplaceWithSameIndentRegister#IsExprReg()<Bar>
 \    let g:ReplaceWithSameIndentRegister_expr = getreg('=')<Bar>
 \endif<Bar>
-\call ReplaceWithSameIndentRegister#Visual("\<lt>Plug>ReplaceWithSameIndentRegisterVisual")<CR>
+\if ! ReplaceWithSameIndentRegister#Visual("\<lt>Plug>ReplaceWithSameIndentRegisterVisual")<Bar>echoerr ingo#err#Get()<Bar>endif<CR>
 
 " A normal-mode repeat of the visual mapping is triggered by repeat.vim. It
 " establishes a new selection at the cursor position, of the same mode and size
@@ -72,7 +58,7 @@ nnoremap <silent> <Plug>ReplaceWithSameIndentRegisterVisual
 \    let g:ReplaceWithSameIndentRegister_expr = getreg('=')<Bar>
 \endif<Bar>
 \execute 'normal!' ReplaceWithSameIndentRegister#VisualMode()<Bar>
-\call ReplaceWithSameIndentRegister#Visual("\<lt>Plug>ReplaceWithSameIndentRegisterVisual")<CR>
+\if ! ReplaceWithSameIndentRegister#Visual("\<lt>Plug>ReplaceWithSameIndentRegisterVisual")<Bar>echoerr ingo#err#Get()<Bar>endif<CR>
 
 
 if ! hasmapto('<Plug>ReplaceWithSameIndentRegisterLine', 'n')

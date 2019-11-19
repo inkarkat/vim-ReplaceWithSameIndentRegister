@@ -1,39 +1,14 @@
 " ReplaceWithSameIndentRegister.vim: Replace lines with the contents of a register, keeping the original indent.
 "
 " DEPENDENCIES:
-"   - ingo/msg.vim autoload script
+"   - ingo-library.vim plugin
 "   - repeat.vim (vimscript #2136) autoload script (optional)
 "   - visualrepeat.vim (vimscript #3848) autoload script (optional)
-"   - visualrepeat/reapply.vim autoload script (optional)
 "
-" Copyright: (C) 2013-2016 Ingo Karkat
+" Copyright: (C) 2013-2019 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 "
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
-"
-" REVISION	DATE		REMARKS
-"   1.01.003	25-Aug-2016	BUG: {count}grR does not repeat the count.
-"				Add ReplaceWithSameIndentRegister#SetCount() and
-"				new a:isRepeatCount argument to
-"				ReplaceWithSameIndentRegister#Visual() that then
-"				passes the stored s:count to repeat#set()..
-"				BUG: Starting with v_gR, repeating in normal
-"				mode with {count}., repeating again uses the
-"				original number of selected lines, not the
-"				overridden {count}. Reason is that
-"				visualrepeat.vim uses 1v to reestablish the
-"				selection of the last change, but this plugin
-"				pastes above the selection and then used
-"				"'<,'>delete _ to clear the selection, which
-"				does not count as an "operation" on the
-"				selection. Switch to using gv"_d for clearing;
-"				this has the same effect and counts as an
-"				operation, thereby keeping the overriding
-"				{count}.
-"   1.00.002	18-Apr-2013	Add ReplaceWithSameIndentRegister#VisualMode()
-"				wrapper around
-"				visualrepeat#reapply#VisualMode().
-"   1.00.001	21-Mar-2013	file creation from ReplaceWithRegister.vim
 
 function! ReplaceWithSameIndentRegister#SetRegister()
     let s:register = v:register
@@ -47,8 +22,8 @@ endfunction
 
 function! ReplaceWithSameIndentRegister#Visual( repeatMapping, ... )
     if visualmode() !=# 'V'
-	call ingo#msg#ErrorMsg('Indent-replace works only with lines')
-	return
+	call ingo#err#Set('Indent-replace works only with lines')
+	return 0
     endif
 
     " Using ]p on a visual selection indent-pastes the text after the selection;
@@ -73,10 +48,17 @@ function! ReplaceWithSameIndentRegister#Visual( repeatMapping, ... )
     endif
 
     try
-	execute "normal! g'<\"" . l:actualRegister . '[P'
+	let l:previousLineNum = line("'>") - line("'<") + 1
+	execute "silent normal! g'<\"" . l:actualRegister . '[P'
+	let l:newLineNum = line("']") - line("'[") + 1
 	let l:save_view = winsaveview()
 	    silent normal! gv"_d
 	call winrestview(l:save_view)
+
+	if l:previousLineNum >= &report || l:newLineNum >= &report
+	    echomsg printf('Replaced %d line%s', l:previousLineNum, (l:previousLineNum == 1 ? '' : 's')) .
+	    \   (l:previousLineNum == l:newLineNum ? '' : printf(' with %d line%s', l:newLineNum, (l:newLineNum == 1 ? '' : 's')))
+	endif
     finally
 	if exists('l:save_reg')
 	    call setreg(l:actualRegister, l:save_reg, l:regtype)
@@ -89,6 +71,8 @@ function! ReplaceWithSameIndentRegister#Visual( repeatMapping, ... )
 	silent! call repeat#set(a:repeatMapping)
     endif
     silent! call visualrepeat#set("\<Plug>ReplaceWithSameIndentRegisterVisual")
+
+    return 1
 endfunction
 
 
